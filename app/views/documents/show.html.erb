@@ -1,0 +1,13 @@
+<main class="container">
+    <section class="show_document_header page_header">
+        <h1><%= @document.title %></h1>
+    </section>
+    <section class="show_document_body page_body">
+        <p><%= @document.content %></p>
+    </section>
+    <section class="show_document_footer page_footer">
+        <button>
+            <%= link_to "Back to Unit", unit_path(@document.unit)%>
+        </button>  
+    </section>
+</main>

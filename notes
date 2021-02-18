@@ -1,0 +1,67 @@
+DATABASE:
+users:
+    *has many unit accesses
+    *has many accessible_units through unit_accesses source: unit
+    *has many document results
+    *has many quiz results
+    username
+    email
+    password_digest
+    admin
+units:
+    *has many unit_accesses
+    *has many users through unit_accesses
+    *has many documents
+    *has many quizzes
+    title
+    description
+documents:
+    *belong to a unit
+    *has many document_results
+    *has many users_completed through document_results source: user
+    title
+    content(rtf)
+    photo_url
+    unit_id
+quizzes:
+    *belong to a unit
+    *has many questions
+    *has many quiz results
+    *has many users_taken through quiz_results source: user
+    title
+    description
+    unit_id
+questions:
+    *belong to a quiz
+    *has many answers
+    content
+    photo_url
+    quiz_id
+answers: 
+    *belong to a question
+    content
+    correct
+    photo_url
+    question_id
+quiz_results:
+    *belong to a user
+    *belong to a quiz
+    score
+    responses
+    user_id
+    quiz_id
+document_results:
+    *belong to a user
+    *belong to a document
+    document_id
+    user_id
+unit_accesses:
+    *belong to a user
+    *belong to a unit
+    user_id
+    unit_id
+
+
+
+
+

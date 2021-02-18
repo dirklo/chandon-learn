@@ -1,0 +1,44 @@
+<main class="container">
+    <section class="show_unit_header page_header">
+        <h1><%= @unit.title %></h1>
+    </section>
+    <section class="show_unit_body page_body">
+        <h2>
+            <%= @unit.description %>
+        </h2>
+        <button>
+            <%= link_to "Edit Unit", edit_unit_path(@unit)%>
+        </button>
+        <div class="unit_document_list">
+            <h2>Unit Documents</h2>
+            <ul>
+                <% @documents.each do |document| %>
+                    <li>
+                        <%= link_to document.title, document_path(document) %>
+                    </li>
+                <% end %>
+            </ul>
+        </div>
+        <button>
+            <%= link_to "Create New Document", new_document_path %>
+        </button>
+        <div class="unit_quiz_list">
+            <h2>Unit Quizzes</h2>
+            <ul>
+                <% @quizzes.each do |quiz| %>
+                    <li>
+                        <%= link_to quiz.title, quiz_path(quiz) %>
+                    </li>
+                <% end %>
+            </ul>
+        </div>
+        <button>
+            <%= link_to "Create New Quiz", new_quiz_path %>
+        </button>
+    </section>
+    <section class="show_unit_footer page_footer">
+        <button>
+            <%= link_to "Back to Admin Home", admin_home_path %>
+        </button>
+    </section>
+</main>

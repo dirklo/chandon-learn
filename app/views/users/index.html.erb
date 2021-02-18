@@ -1,10 +1,19 @@
-<h1>THIS IS USER INDEX</h1>
-<h2>All Users:</h2>
-<ul>
-    <%= @users.each do |user| %>
-    <li>
-        <%= user.username %>
-        <%= user.email %>
-    </li>
-    <% end %>
-</ul>
+<main class="container">
+    <section class="user_index_header page_header">
+        <h1>THIS IS USER INDEX</h1>
+    </section>
+    <section class="user_index_body page_body">
+        <h2>All Users:</h2>
+        <% @users.each do |user| %>
+            <p><%= user.username %> - <%= user.email %></p>
+        <% end %>
+    </section>
+    <section class="user_index_footer page_footer">
+        <button>
+            <%= link_to "Log In", new_login_path %>
+        </button>
+        <button>
+            <%= link_to "Sign Up", new_user_path %>
+        </button>
+    </section>
+</main>

@@ -1,0 +1,11 @@
+<main class="container">
+    <section class="quiz_show_header page_header">
+        <h1><%= @quiz.title %></h1>
+        <h2><%= @quiz.description %></h2>
+    </section>
+    <section class="quiz_show_body page_body">
+        <button>
+            <%= link_to "Start Quiz", quiz_play_path(@quiz) %>
+        </button>
+    </section>
+</main>

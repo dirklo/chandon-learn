@@ -1,0 +1,22 @@
+<main class="container">
+    <section class="quiz_play_header page_header">
+        <h1><%= @quiz.title %></h1>
+    </section>
+    <section class="quiz_play_header page_header">
+        <% @questions.each do |question| %>
+            <%= question.content %>
+                <ul>
+                    <% question.answers.each do |answer| %>
+                        <li>
+                            <%= answer.content %>
+                        </li>
+                    <% end %>
+                </ul>
+        <% end %>
+    </section>
+    <section class="quiz_play_footer page_footer">
+        <button>
+            <%= link_to "Back to Unit", unit_path(@quiz.unit)%>
+        </button>
+    </section>
+</main>

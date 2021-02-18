@@ -1,0 +1,17 @@
+<main class="container">
+    <section class="new_user_header">
+        <h1>NEW USER SIGNUP</h1>
+    </section>
+
+    <section class="new_user_body">
+        <%= form_for @user do |f| %>
+            <%= f.label :username %><br>
+            <%= f.text_field :username %><br><br>
+            <%= f.label :email %><br>
+            <%= f.text_field :email %><br><br>
+            <%= f.label :password %><br>
+            <%= f.text_field :password %><br><br>
+            <%= f.submit "SIGN UP" %>
+        <% end %>
+    </section>
+</main>
