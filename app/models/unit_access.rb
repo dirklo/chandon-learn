@@ -1,4 +1,4 @@
 class UnitAccess < ApplicationRecord
-    belong_to :user
-    belong_to :unit
+    belongs_to :user
+    belongs_to :unit
 end
