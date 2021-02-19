@@ -1,23 +1,21 @@
 <main class="container">
-    <section class="new_quiz_header page_header">
-        <h1>New Quiz Page</h1>
+    <section class="edit_quiz_header page_header">
+        <h1>Edit Quiz Page</h1>
     </section>
-    <section class="new_quiz_body page_body">
-        <h2>Select a Unit:</h2>
+    <section class="edit_quiz_body page_body">
         <%= form_for @quiz do |f| %>
             <%= f.label :title %><br>
             <%= f.text_field :title %><br><br>
             <%= f.label :description %><br>
             <%= f.text_area :description %><br><br>
-
             <%= f.fields_for :questions do |builder| %>
-                <fieldset>
-                    <%= builder.label :content, "Question" %><br>
-                    <%= builder.text_field :content %><br>
-                </fieldset>
+                <%= render 'question_fields', f: builder %>
             <% end %>
-
+            <%= link_to_add_association "Add Question", f, :questions %>
             <%= f.submit %>
         <% end %>
     </section>
 </main>
+
+<%= javascript_pack_tag 'create.js' %>
+

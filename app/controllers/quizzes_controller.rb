@@ -16,12 +16,12 @@ class QuizzesController < ApplicationController
     end
 
     def create
-        @quiz = Quiz.create(params.require(:quiz).permit(:title, :description, :unit_id))
+        @quiz = Quiz.create(quiz_params)
         redirect_to quiz_path(@quiz)
     end
 
     def update
-        @quiz.update(params.require(:quiz).permit(:content, :photo_url))
+        @quiz.update(quiz_params)
         redirect_to quiz_path(@quiz)
     end
 
@@ -33,5 +33,9 @@ class QuizzesController < ApplicationController
     private
         def set_quiz
             @quiz = Quiz.find(params[:id])
+        end
+
+        def quiz_params
+            params.require(:quiz).permit(:title, :description, :questions_attributes => [:content, :id, :_destroy, :answers_attributes => [:content, :id, :correct, :_destroy]])
         end
 end

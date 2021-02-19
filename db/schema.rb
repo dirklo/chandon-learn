@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_18_082237) do
+ActiveRecord::Schema.define(version: 2021_02_19_071919) do
+
+  create_table "answer_fields", force: :cascade do |t|
+    t.string "content"
+    t.string "answer_content"
+    t.boolean "required"
+    t.integer "answer_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["answer_id"], name: "index_answer_fields_on_answer_id"
+  end
 
   create_table "answers", force: :cascade do |t|
     t.string "content"
@@ -83,4 +93,5 @@ ActiveRecord::Schema.define(version: 2021_02_18_082237) do
     t.boolean "admin", default: false
   end
 
+  add_foreign_key "answer_fields", "answers"
 end
