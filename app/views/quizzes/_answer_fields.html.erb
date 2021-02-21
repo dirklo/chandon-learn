@@ -1,6 +1,7 @@
-<fieldset>
+<fieldset class="answer_card">
     <%= f.label :content, "Answer" %><br>
-    <%= f.text_field :content %>
-    <%= f.hidden_field :_destroy, value:false %>
-    <button type='button' class='remove_button'>Remove Answer</button>
+    <%= f.text_field :content %><br><br>
+    <%= f.label :correct, "Correct Answer" %>
+    <%= f.check_box :correct %><br><br>
+    <%= link_to_remove_association('Remove Answer', f, { wrapper_class: 'answer_card' }) %>
 </fieldset>

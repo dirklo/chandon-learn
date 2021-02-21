@@ -5,18 +5,17 @@
     <section class="new_quiz_body page_body">
         <h2>Select a Unit:</h2>
         <%= form_for @quiz do |f| %>
+            <%= f.collection_select :unit_id, Unit.order(:title), :id, :title %><br><br>
             <%= f.label :title %><br>
             <%= f.text_field :title %><br><br>
             <%= f.label :description %><br>
             <%= f.text_area :description %><br><br>
-
             <%= f.fields_for :questions do |builder| %>
-                <fieldset>
-                    <%= builder.label :content, "Question" %><br>
-                    <%= builder.text_field :content %><br>
-                </fieldset>
+                <%= render 'question_fields', f: builder %>
             <% end %>
-
+            <div>
+                <%= link_to_add_association "Add Question", f, :questions %>
+            </div>
             <%= f.submit %>
         <% end %>
     </section>

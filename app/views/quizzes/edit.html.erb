@@ -11,7 +11,9 @@
             <%= f.fields_for :questions do |builder| %>
                 <%= render 'question_fields', f: builder %>
             <% end %>
-            <%= link_to_add_association "Add Question", f, :questions %>
+            <div>
+                <%= link_to_add_association "Add Question", f, :questions %>
+            </div>
             <%= f.submit %>
         <% end %>
     </section>

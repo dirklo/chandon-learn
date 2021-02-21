@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 2021_02_19_071919) do
     t.string "content"
     t.string "photo_url"
     t.integer "quiz_id"
+    t.string "kind"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

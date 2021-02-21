@@ -4,8 +4,9 @@ Rails.application.routes.draw do
   resources :units, only: %i[ new show edit create update destroy ]
   resources :documents, only: %i[ new show edit create update destroy ]
   resources :quizzes, only: %i[ new show edit create update destroy ]
-  get '/', to: 'users#index', as: "home"
-  get '/admin', to: 'admin#home', as: "admin_home"
+  get '/', to: 'home#index', as: "home_page"
+  get '/home', to: 'home#student', as: "student_home"
+  get '/admin', to: 'home#admin', as: "admin_home"
   get '/login', to: 'sessions#new', as: "new_login"
   post '/login', to: 'sessions#create', as: "login"
   get '/logout', to: 'sessions#destroy', as: "logout"

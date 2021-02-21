@@ -10,6 +10,9 @@ class QuizzesController < ApplicationController
 
     def new
         @quiz = Quiz.new
+        @quiz.questions.build
+        @quiz.questions.first.answers.build
+        @quiz.questions.first.answers.build
     end
 
     def edit
@@ -36,6 +39,6 @@ class QuizzesController < ApplicationController
         end
 
         def quiz_params
-            params.require(:quiz).permit(:title, :description, :questions_attributes => [:content, :id, :_destroy, :answers_attributes => [:content, :id, :correct, :_destroy]])
+            params.require(:quiz).permit(:title, :description, :unit_id, :questions_attributes => [:content, :kind, :_destroy, :answers_attributes => [:content, :correct, :comment, :_destroy]])
         end
 end

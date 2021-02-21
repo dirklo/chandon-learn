@@ -4,6 +4,7 @@ class CreateQuestions < ActiveRecord::Migration[6.1]
       t.string :content
       t.string :photo_url
       t.integer :quiz_id
+      t.string :kind
 
       t.timestamps
     end

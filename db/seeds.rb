@@ -6,7 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.create(username: "Rick", email: "rick@email.com", password: "rick")
+User.create(username: "Rick", email: "rick@email.com", password: "rick", admin: true)
+User.create(username: "Owen", email: "owen@email.com", password: "owen", admin: false)
 
 unit1 = Unit.create(title: "Unit 1", description: "The first unit of the program.")
 unit2 = Unit.create(title: "Unit 2", description: "The second unit of the program.")
@@ -40,17 +41,17 @@ quiz1 = unit1.quizzes.create(title: "Unit 1 Quiz", description: "This is a quiz 
 quiz2 = unit2.quizzes.create(title: "Unit 2 Quiz", description: "This is the unit 2 quiz!  Good luck!!")
 
 #####QUIZ 1#####
-question = quiz1.questions.create(content: "Is wide a salad?")
+question = quiz1.questions.create(content: "Is wine a salad?", kind: "mc_one")
 question.answers.create(content: "Yes", correct: false)
 question.answers.create(content: "No", correct: true)
 
-question = quiz1.questions.create(content: "Which of these toppings does not belong on wine?")
+question = quiz1.questions.create(content: "Which of these toppings does not belong on wine?", kind: "mc_one")
 question.answers.create(content: "Pepperoni", correct: false)
-question.answers.create(content: "Pineapple", correct: false)
+question.answers.create(content: "Pineapple", correct: true)
 question.answers.create(content: "Anchovies", correct: true)
 question.answers.create(content: "Sausage", correct: false)
 
-question = quiz1.questions.create(content: "Which of these are fruits? (select all that apply)")
+question = quiz1.questions.create(content: "Which of these are fruits? (select all that apply)", kind: "mc_many")
 question.answers.create(content: "Tomato", correct: true)
 question.answers.create(content: "Cucumber", correct: false)
 question.answers.create(content: "Parsley", correct: false)
@@ -59,21 +60,21 @@ question.answers.create(content: "Parsnip", correct: false)
 question.answers.create(content: "Cake", correct: false)
 
 #####QUIZ 2#####
-question = quiz2.questions.create(content: "All wines are descended from what animal?")
+question = quiz2.questions.create(content: "All wines are descended from what animal?", kind: "mc_many")
 question.answers.create(content: "Wolves", correct: true)
 question.answers.create(content: "Beavers", correct: false)
 question.answers.create(content: "Coyotes", correct: false)
 question.answers.create(content: "Fish", correct: false)
-question.answers.create(content: "Oranges", correct: false)
+question.answers.create(content: "Oranges", correct: true)
 
-question = quiz2.questions.create(content: "How many legs does a wine have?")
+question = quiz2.questions.create(content: "How many legs does a wine have?", kind: "mc_one")
 question.answers.create(content: "8", correct: true)
 question.answers.create(content: "6", correct: false)
 question.answers.create(content: "10", correct: false)
 
-question = quiz2.questions.create(content: "Which is not a wine?")
+question = quiz2.questions.create(content: "Which is not a wine?", kind: "mc_one")
 question.answers.create(content: "Dragon", correct: true)
-question.answers.create(content: "Human", correct: false)
+question.answers.create(content: "Human", correct: true)
 question.answers.create(content: "Platypus", correct: false)
 question.answers.create(content: "Chimpanzee", correct: false)
 question.answers.create(content: "Beaver", correct: false)

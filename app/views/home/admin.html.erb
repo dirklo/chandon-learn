@@ -1,0 +1,35 @@
+<main class=container>
+    <section class="admin_home_header page_header">
+        <h1>Admin Home</h1>
+    </section>
+    <section class="admin_home_body">
+        <article class="cirriculum">
+            <h2>Cirriculum</h2>
+            <button>
+                <%= link_to "Create New Unit", new_unit_path %>
+            </button>
+            <h2>Edit Units</h2>
+            <div class="admin_units_list">
+                    <% @units.each do |unit| %>
+                        <p>
+                            <button>
+                                <%= link_to unit.title, unit_path(unit) %>
+                            </button>
+                        </p>
+                    <% end %>
+                </ul>
+            </div>
+        </article>
+        <article class="users">
+            <h2>Users</h2>
+            <div class="admin_users_list">
+                <% @users.each do |user| %>
+                    <p>
+                        <%= user.username + " - " + user.email %>  
+                    </p>
+                <% end %>
+                </ul>
+            </div>
+        </article>
+    </section>
+</main>
