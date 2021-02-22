@@ -1,11 +1,11 @@
 <main class="container">
     <section class="new_quiz_header page_header">
-        <h1>New Quiz Page</h1>
+        <h1>New Quiz</h1>
     </section>
-    <section class="new_quiz_body page_body">
+    <section class="new_quiz_body">
         <h2>Select a Unit:</h2>
         <%= form_for @quiz do |f| %>
-            <%= f.collection_select :unit_id, Unit.order(:title), :id, :title %><br><br>
+            <%= f.collection_select :unit_id, @units, :id, :title, {selected: params[:unit]} %><br><br>
             <%= f.label :title %><br>
             <%= f.text_field :title %><br><br>
             <%= f.label :description %><br>
@@ -13,10 +13,12 @@
             <%= f.fields_for :questions do |builder| %>
                 <%= render 'question_fields', f: builder %>
             <% end %>
+            <br>
             <div>
-                <%= link_to_add_association "Add Question", f, :questions %>
+                <%= link_to_add_association "Add Question", f, :questions, class: "button" %>
             </div>
-            <%= f.submit %>
+            <br><br>
+            <%= f.submit class: "button" %>
         <% end %>
     </section>
 </main>

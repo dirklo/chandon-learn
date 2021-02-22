@@ -1,4 +1,5 @@
 <fieldset class="question_card">
+    <br>    
     <%= f.label :kind, "Select the Question Type:"%><br>
     <%= f.select :kind, options_for_select([["One Correct Answer", "mc_one"],["Many Correct Answers", "mc_many"]], f.object.kind) %><br><br>
     <%= f.label :content, "Question" %><br>
@@ -7,7 +8,9 @@
         <%= render 'answer_fields', f: builder %>
     <% end %>
     <div>
-        <%= link_to_add_association "Add Answer", f, :answers %>
+        <br><br>
+        <%= link_to_add_association "Add Answer", f, :answers, class: "button" %>
     </div>
-    <%= link_to_remove_association('Remove Question', f, { wrapper_class: 'question_card' }) %>
+    <br><br>
+    <%= link_to_remove_association('Remove Question', f, { wrapper_class: 'question_card', class: "button" }) %>
 </fieldset>

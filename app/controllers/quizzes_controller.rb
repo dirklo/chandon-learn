@@ -1,36 +1,64 @@
 class QuizzesController < ApplicationController
     before_action :set_quiz, only: %i[ show edit update ]
     def index
-        @Quizzes = Quiz.all
-        render 'quizzes/index'
+        if is_admin?
+            @Quizzes = Quiz.all
+            render 'quizzes/index'
+        else
+            redirect_to home_page_path
+        end
     end
 
     def show
     end
 
     def new
-        @quiz = Quiz.new
-        @quiz.questions.build
-        @quiz.questions.first.answers.build
-        @quiz.questions.first.answers.build
+        if is_admin?
+            @units = Unit.all
+            @quiz = Quiz.new
+            @quiz.questions.build
+            @quiz.questions.first.answers.build
+            @quiz.questions.first.answers.build
+            render 'quizzes/new'
+        else
+            redirect_to home_page_path
+        end
     end
 
     def edit
+        if is_admin?
+            @units = Unit.all
+            render 'quizzes/edit'
+        else
+            redirect_to home_page_path
+        end
     end
 
     def create
-        @quiz = Quiz.create(quiz_params)
-        redirect_to quiz_path(@quiz)
+        if is_admin?
+            @quiz = Quiz.create(quiz_params)
+            redirect_to edit_unit_path(@quiz.unit)
+        else
+            redirect_to home_page_path
+        end
     end
 
     def update
-        @quiz.update(quiz_params)
-        redirect_to quiz_path(@quiz)
+        if is_admin?
+            @quiz.update(quiz_params)
+            redirect_to edit_unit_path(@quiz.unit)
+        else
+            redirect_to home_page_path
+        end
     end
 
     def destroy
-        @quiz.destroy
-        redirect_to quizzes_path
+        if is_admin?
+            @quiz.destroy
+            redirect_to quizzes_path
+        else
+            redirect_to home_page_path
+        end
     end
 
     private
@@ -39,6 +67,6 @@ class QuizzesController < ApplicationController
         end
 
         def quiz_params
-            params.require(:quiz).permit(:title, :description, :unit_id, :questions_attributes => [:content, :kind, :_destroy, :answers_attributes => [:content, :correct, :comment, :_destroy]])
+            params.require(:quiz).permit(:title, :description, :unit_id, :questions_attributes => [:id, :content, :kind, :_destroy, :answers_attributes => [:id, :content, :correct, :comment, :_destroy]])
         end
 end

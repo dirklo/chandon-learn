@@ -9,11 +9,7 @@ class SessionsController < ApplicationController
         @user = User.find_by(username: params[:user][:username]) || User.find_by(username: params[:user][:email])
         if @user && @user.authenticate(params[:user][:password])
             session[:current_user_id] = @user.id
-            if is_admin?
-                redirect_to admin_home_path
-            else
-                redirect_to student_home_path
-            end
+            redirect_to home_path
         else
             redirect_to home_page_path
         end

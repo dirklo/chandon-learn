@@ -1,6 +1,6 @@
 <main class="container">
     <section class="new_unit_header page_header">
-        <h1>New Unit Form</h1>
+        <h1>New Unit</h1>
     </section>
     <section class="new_unit_body page_body">
         <%= form_for @unit do |f| %>
@@ -8,7 +8,7 @@
             <%= f.text_field :title %><br><br>
             <%= f.label :description %><br>
             <%= f.text_field :description %><br><br>
-            <%= f.submit %>
+            <%= f.submit class: "button" %>
         <% end %>
     </section>
 </main>

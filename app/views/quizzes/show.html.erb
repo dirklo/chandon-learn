@@ -8,4 +8,11 @@
             <%= link_to "Start Quiz", quiz_play_path(@quiz) %>
         </button>
     </section>
+    <section class="quiz_show_footer page_footer">
+        <% if is_admin? %>
+            <button>
+                <%= link_to "Edit Quiz", edit_quiz_path(@quiz)%>
+            </button>
+        <% end %>
+    </section>
 </main>

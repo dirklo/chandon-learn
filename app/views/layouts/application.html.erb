@@ -7,6 +7,7 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
@@ -24,6 +25,8 @@
           <%= link_to "Log Out", logout_path %>
         </button>
       <% end %>
+
+      <%= link_to image_tag('home2.png'), home_path %>
     </nav>
     <%= yield %>
   </body>

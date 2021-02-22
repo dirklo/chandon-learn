@@ -20,7 +20,7 @@
  }
 
  nav {
-    position: absolute;
+    position: fixed;
     left: 0;
     background: linear-gradient(to right, rgb(34, 0, 0), rgb(30, 32, 0));
     min-height: 100vh;
@@ -30,6 +30,12 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+ }
+
+ nav img {
+     margin-top: 30px;
+     width: 50px;
+     height: 50px;
  }
 
  nav button {
@@ -48,6 +54,7 @@
  }
 
 .page_header {
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -65,20 +72,57 @@
     align-items: center;
 }
 
-/* BUTTONS */
-button {
-    padding: 5px 10px;
-    background: rgba(128, 128, 128, 0.5);
-    border: 2px solid black;
-    border-radius: 3px;
-    text-decoration: none;
+.page_footer {
+    width: 90%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
 }
 
-button a {
-    text-decoration: none;
+.page_footer button {
+    margin: 20px 0;
+}
+
+article {
+    max-width: 350px;
+    width: 50%;
+    min-width: 300px;
+    margin: 20px 10px; 
+    padding: 5px;
+    border: 1px solid black;
+    border-top: 30px solid rgba(3, 2, 70, 0.2);
+    border-radius: 3px;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+    background: rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+
+/* BUTTONS */
+button,
+.button {
+    padding: 5px 10px;
+    background: rgba(128, 128, 128, 0.5);
     color: rgb(233, 233, 233);
     text-shadow: 1px 1px 2px black;
     font-size: 1.2em;
+    border: 2px solid black;
+    border-radius: 3px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+button a,
+.button a {
+    text-decoration: none;
+    color: rgb(233, 233, 233) !important;
+    text-shadow: 1px 1px 2px black;
+    cursor: pointer;
 }
 
 /* HOME PAGE */
@@ -94,32 +138,166 @@ button a {
 .admin_home_body {
     max-width: 800px;
     min-width: 500px; 
-    width: 90%;
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     flex-wrap: wrap;
 }
 
-.admin_home_body article {
-    max-width: 350px;
-    width: 50%;
-    min-width: 300px;
-    margin: 20px 10px; 
-    border: 1px solid black;
-    border-top: 30px solid rgba(3, 2, 70, 0.2);
-    border-radius: 3px;
-    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
-    background: rgba(0,0,0,0.2);
+/* STUDENT HOME PAGE */
+.student_home_body button {
+    margin-bottom: 10px;
+}
+
+
+/* UNIT EDIT PAGE  */
+.edit_unit_header {
+    max-width: 500px;
+    width: 100%;
+}
+.edit_unit_header input,
+.edit_unit_header textarea {
+    padding: 5px;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.edit_unit_body {
+    max-width: 800px;
+    min-width: 500px; 
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+/* USER EDIT ADMIN PAGE */
+.user_edit_admin_body {
+    width: 100%;
+    max-width: 600px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
 }
 
-/* SHOW DOCUMENT */
-.show_document_body {
-    max-width: 600px;
+.user_edit_admin_body div {
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 90%;
+    border: 2px solid black;
+    border-radius: 5px;
+    background: rgba(255, 248, 220, 0.2);
 }
 
+.user_edit_admin_body .email_info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: baseline;
+}
 
+.user_edit_admin_body .email_info section {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.user_edit_admin_body .email_info section span{
+    width: 50%;
+    min-width: 200px;
+}
+
+/* SHOW DOCUMENT */
+.show_document_body {
+    max-width: 700px;
+    width: 90%;
+    padding: 10px;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.5)
+}
+
+/* NEW AND EDIT DOCUMENT PAGE */
+.new_document_body {
+    max-width: 700px;
+    width: 100%;
+}
+
+.new_document_body input,
+.new_document_body select {
+    padding: 10px;
+    width: 50%;
+    border-radius: 5px;
+}
+
+.new_document_body trix-editor {
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+}
+
+/* SHOW UNIT PAGE */
+.unit_show_body {
+    width: 90%;
+    max-width: 600px;
+    padding: 15px;
+    border-radius: 5px;
+    border: 2px solid black;
+}
+
+.show_unit_list .unit_items {
+    width: 95%;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+/* NEW UNIT PAGE */
+.new_unit_body {
+    width: 90%;
+    max-width: 500px;
+}
+
+.new_unit_body form {
+    width: 100%;
+    max-width: 500px;
+}
+
+.new_unit_body input[type=text] {
+    width: 100%;
+    max-width: 500px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+/* QUIZ NEW AND EDIT PAGE */
+.new_quiz_body {
+    width: 90%;
+    max-width: 700px;
+}
+.new_quiz_body fieldset {
+    padding: 20px !important;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    background: rgba(255, 255, 255, 0.4);
+}
+.new_quiz_body button,
+.new_quiz_body .button {
+    margin: 10px 10px;
+}
+
+.new_quiz_body textarea,
+.new_quiz_body select,
+.new_quiz_body input[type=text] {
+    padding: 5px;
+    border-radius: 5px;
+    width: 90%;
+}

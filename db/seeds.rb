@@ -79,3 +79,4 @@ question.answers.create(content: "Platypus", correct: false)
 question.answers.create(content: "Chimpanzee", correct: false)
 question.answers.create(content: "Beaver", correct: false)
 question.answers.create(content: "Bear", correct: false)
+

@@ -6,29 +6,55 @@ class UnitsController < ApplicationController
     end
 
     def new
-        @unit = Unit.new
+        if is_admin?
+            @unit = Unit.new
+        else
+            redirect_to home_page_path
+        end
     end
 
     def edit
+        if is_admin?
+            @documents = @unit.documents
+            @quizzes = @unit.quizzes
+        else
+            redirect_to home_page_path
+        end
     end
 
     def create
-        @unit = Unit.create(params.require(:unit).permit(:title, :description))
-        redirect_to unit_path(@unit)
+        if is_admin?
+            @unit = Unit.create(unit_params)
+            redirect_to admin_home_path
+        else
+            redirect_to home_page_path
+        end
     end
 
     def update
-        @unit.update(params.require(:unit).permit(:title, :description))
-        redirect_to unit_path(@unit)
+        if is_admin?
+            @unit.update(unit_params)
+            redirect_to admin_home_path
+        else
+            redirect_to home_page_path
+        end
     end
 
     def destroy
-        @unit.destroy
-        redirect_to units_path
+        if is_admin?
+            @unit.destroy
+            redirect_to admin_home_path
+        else
+            redirect_to home_page_path
+        end
     end
 
     private
         def set_unit
             @unit = Unit.find(params[:id])
+        end
+
+        def unit_params
+            params.require(:unit).permit(:title, :description)
         end
 end

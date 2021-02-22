@@ -3,8 +3,15 @@ class HomeController < ApplicationController
         render 'home/index'
     end
 
-    def student
-        render 'home/student'
+    def home
+        if is_admin?
+            @users = User.all
+            @units = Unit.all
+            render 'home/admin'
+        else
+            @units = current_user.accessible_units
+            render 'home/student'
+        end
     end
 
     def admin
@@ -13,7 +20,7 @@ class HomeController < ApplicationController
             @units = Unit.all
             render 'home/admin'
         else
-            render 'home/student'
+            redirect_to home_path
         end
     end
 end 

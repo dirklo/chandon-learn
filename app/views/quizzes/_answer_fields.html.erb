@@ -3,5 +3,5 @@
     <%= f.text_field :content %><br><br>
     <%= f.label :correct, "Correct Answer" %>
     <%= f.check_box :correct %><br><br>
-    <%= link_to_remove_association('Remove Answer', f, { wrapper_class: 'answer_card' }) %>
+    <%= link_to_remove_association('Remove Answer', f, { wrapper_class: 'answer_card', class: "button" }) %>
 </fieldset>

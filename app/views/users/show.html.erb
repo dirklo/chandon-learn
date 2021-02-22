@@ -1,5 +1,5 @@
 <main class="container">
-    <section class="show_user_header">
+    <section class="show_user_header page_header">
         <h1><%= @user.username %></h1>
     </section>
     <section class="show_user_body">
@@ -7,12 +7,21 @@
         <h2>Admin: <%= !!@user.admin %></h2>
 
         <div class="my_learning_div">
-            <h2>My Units to Learn:</h2>
+            <h2>Unit Access:</h2>
+            <% @user.accessible_units.each do |unit| %>
+                <p>
+                    <button>
+                        <%= link_to unit.title, unit %>
+                    </button>
+                </p>
+            <% end %>
         </div>
     </section>
     <section class="show_user_footer">
-        <button type='button'>
-            <%= link_to "Edit User", edit_user_path(@user) %>
-        </button>
+        <% if is_admin? %>
+            <button type='button'>
+                <%= link_to "Edit User", edit_user_path(@user) %>
+            </button>
+        <% end %>
     </section>
 </main>

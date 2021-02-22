@@ -1,8 +1,8 @@
 <main class="container">
-    <section class="edit_quiz_header page_header">
-        <h1>Edit Quiz Page</h1>
+    <section class="new_quiz_header page_header">
+        <h1>Edit Quiz</h1>
     </section>
-    <section class="edit_quiz_body page_body">
+    <section class="new_quiz_body">
         <%= form_for @quiz do |f| %>
             <%= f.label :title %><br>
             <%= f.text_field :title %><br><br>
@@ -11,10 +11,12 @@
             <%= f.fields_for :questions do |builder| %>
                 <%= render 'question_fields', f: builder %>
             <% end %>
+            <br>
             <div>
-                <%= link_to_add_association "Add Question", f, :questions %>
+                <%= link_to_add_association "Add Question", f, :questions, class: "button" %>
             </div>
-            <%= f.submit %>
+            <br><br>
+            <%= f.submit class: "button" %>
         <% end %>
     </section>
 </main>

@@ -1,14 +1,49 @@
-<main class="container">
-    <section class="edit_unit_header">
-        <h1>New Unit Form</h1>
-    </section>
-    <section class="edit_unit_body">
-        <%= form_for @unit do |f| %>
+<%= form_for @unit do |f| %>
+    <main class="container">
+        <section class="edit_unit_header page_header">
+            <h1>Edit Unit</h1>
             <%= f.label :title %><br>
             <%= f.text_field :title %><br><br>
             <%= f.label :description %><br>
-            <%= f.text_field :description %><br><br>
-            <%= f.submit %>
-        <% end %>
-    </section>
-</main>
+            <%= f.text_area :description %><br><br>
+        </section>
+        <section class="edit_unit_body">
+            <article class="unit_document_list">
+                <h2>Unit Documents</h2>
+                <% @documents.each do |document| %>
+                    <p>
+                        <button>
+                            <%= link_to document.title, document_path(document) %>
+                        </button>
+                    </p>
+                <% end %>
+                <br><br>
+                <button>
+                    <%= link_to "Create New Document", new_document_path(unit: "#{@unit.id}") %>
+                </button>
+                <br>
+            </article>
+            <article class="unit_quiz_list">
+                <h2>Unit Quizzes</h2>
+                <% @quizzes.each do |quiz| %>
+                    <p>
+                        <button>
+                            <%= link_to quiz.title, quiz_path(quiz) %>
+                        </button>
+                    </p>
+                <% end %>
+                <br><br>
+                <button>
+                    <%= link_to "Create New Quiz", new_quiz_path(unit: "#{@unit.id}") %>
+                </button>
+                <br>
+            </article>
+        </section>
+        <section class="edit_unit_footer page_footer">
+            <%= f.button "Update Unit", :class => 'button' %>
+            <button>
+                <%= link_to "Back to Admin Home", admin_home_path %>
+            </button>
+        </section>
+    </main>
+<% end %>

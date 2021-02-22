@@ -1,0 +1,52 @@
+<main class="container">
+    <section class="user_edit_admin_header page_header">
+        <h1>Account Edit</h1>
+    </section>
+    <section class="user_edit_admin_body page_body">
+        <div class="email_info">
+            <section>
+                <span><h2>User Name:</h2></span>
+                <span><strong><%= @user.username %></strong></span>
+            </section>
+            <section>
+                <span><h2>Email Address:</h2></span>
+                <span><strong><%= @user.email %></strong></span>
+            </section>
+            <section>
+                <span><h2>Account Type:</h2></span>
+                <span>
+                    <strong><%= "Student Account" if !@user.admin %></strong>
+                    <strong><%= "Administrator Account" if !!@user.admin %></strong>
+                </span>
+            </section>
+            <section>
+                <% if @user.admin %>
+                    <button>
+                        <%= link_to "Remove Admin Access", remove_admin_path(@user), method: :post %>
+                    </button>
+                <% else %>
+                    <button>
+                        <%= link_to "Make User Admin", make_admin_path(@user), method: :post %>
+                    </button>
+                <% end %>
+            </section>
+        </div>
+        <div class="unit_access">
+            <h2>Unit Access:</h2>
+            <%= form_with model: Unit, url: "/users/#{@user.id}/unit_accesses", method: :post do |f| %>
+                <% @units.each do |unit| %>
+                    <p>
+                        <%= f.check_box unit.id, {checked: @user.accessible_units.include?(unit), multiple: true, include_hidden: false} %>
+                        <%= f.label unit.id, unit.title %>
+                    </p>
+                <% end %>
+                <%= f.submit "Update Unit Access", class: "button" %>
+            <% end %>
+        </div>
+    </section>
+    <section class="user_edit_admin_footer">
+        <button>
+            <%= link_to "Back to Admin Home", admin_home_path %>
+        </button>
+    </section>
+</main>

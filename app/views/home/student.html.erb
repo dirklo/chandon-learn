@@ -1,9 +1,17 @@
 <main class="container">
     <section class="student_home_header page_header">
-        <h1>THIS IS STUDENT HOME</h1>
+        <h1>STUDENT HOME</h1>
+        <p>You are logged in as: <%= current_user.username %></p>
     </section>
     <section class="student_home_body page_body">
-
+        <h2>My Units:</h2>
+        <% @units.each do |unit| %>
+            <div>
+                <button>
+                    <%= link_to unit.title, unit %>
+                </button>
+            </div>
+        <% end %>
     </section>
     <section class="student_home_footer page_footer">
 

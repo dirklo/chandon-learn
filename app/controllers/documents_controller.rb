@@ -1,34 +1,57 @@
 class DocumentsController < ApplicationController
     before_action :set_document, only: %i[ show edit update ]
-    def index
-        @documents = Document.all
-        render 'documents/index'
-    end
 
     def show
+        if logged_in?
+            DocumentResult.create(user: current_user, document: @document) unless DocumentResult.find_by(user: current_user, document: @document)
+            render 'documents/show'
+        end
     end
 
     def new
-        @units = Unit.all
-        @document = Document.new
+        if is_admin?
+            @units = Unit.all
+            @document = Document.new
+            render 'documents/new'
+        else
+            redirect_to home_page_path
+        end
     end
 
     def edit
+        if is_admin?
+            @units = Unit.all
+            render "documents/edit"
+        else
+            redirect_to home_page_path
+        end
     end
 
     def create
-        @document = Document.create(params.require(:document).permit(:title, :content, :photo_url, :unit_id))
-        redirect_to document_path(@document)
+        if is_admin?
+            @document = Document.create(document_params)
+            redirect_to edit_unit_path(@document.unit)
+        else
+            redirect_to home_page_path
+        end
     end
 
     def update
-        @document.update(params.require(:document).permit(:content, :photo_url))
-        redirect_to document_path(@document)
+        if is_admin?
+            @document.update(document_params)
+            redirect_to edit_unit_path(@document.unit)
+        else
+            redirect_to home_page_path
+        end
     end
 
     def destroy
-        @document.destroy
-        redirect_to documents_path
+        if is_admin?
+            @document.destroy
+            redirect_to edit_unit_path(@document.unit)
+        else
+            redirect_to home_page_path
+        end
     end
 
     private
@@ -36,4 +59,7 @@ class DocumentsController < ApplicationController
             @document = Document.find(params[:id])
         end
 
+        def document_params
+            params.require(:document).permit(:title, :content, :photo_url, :unit_id)
+        end
 end

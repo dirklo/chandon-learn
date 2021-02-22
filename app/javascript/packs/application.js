@@ -14,3 +14,5 @@ ActiveStorage.start()
 
 require("jquery")
 require("@nathanvda/cocoon")
+require("trix")
+require("@rails/actiontext")

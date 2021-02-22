@@ -1,4 +1,4 @@
-<main class=container>
+<main class="container">
     <section class="admin_home_header page_header">
         <h1>Admin Home</h1>
     </section>
@@ -13,7 +13,7 @@
                     <% @units.each do |unit| %>
                         <p>
                             <button>
-                                <%= link_to unit.title, unit_path(unit) %>
+                                <%= link_to unit.title, edit_unit_path(unit) %>
                             </button>
                         </p>
                     <% end %>
@@ -25,7 +25,9 @@
             <div class="admin_users_list">
                 <% @users.each do |user| %>
                     <p>
-                        <%= user.username + " - " + user.email %>  
+                        <button>
+                            <%= link_to user.username + " - " + user.email, edit_user_admin_path(user) %>  
+                        </button>
                     </p>
                 <% end %>
                 </ul>

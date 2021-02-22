@@ -6,8 +6,13 @@
         <p><%= @document.content %></p>
     </section>
     <section class="show_document_footer page_footer">
+        <% if is_admin? %>
+            <button>
+                <%= link_to "Edit This Document", edit_document_path(@document) %>
+            </button>
+        <% end %>   
         <button>
             <%= link_to "Back to Unit", unit_path(@document.unit)%>
-        </button>  
+        </button>
     </section>
 </main>

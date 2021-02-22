@@ -1,14 +1,14 @@
 <main class="container">
-    <section class="new_document_header page_header">
-        <h1>New Document Page</h1>
+    <section class="edit_document_header page_header">
+        <h1>Edit Document Page</h1>
     </section>
     <section class="new_document_body page_body">
         <h2>Select a Unit:</h2>
         <%= form_for @document do |f| %>
-            <%= f.collection_select :unit_id, @units, :id, :title, {selected: params[:unit]} %><br><br>
+            <%= f.collection_select :unit_id, @units, :id, :title %><br><br>
             <%= f.label :title %><br>
             <%= f.text_field :title %><br><br>
-            <%= f.label :content, "Document Content" %><br>
+            <%= f.label :content %><br>
             <%= f.rich_text_area :content %><br><br>
             <%= f.submit class: "button" %>
         <% end %>
