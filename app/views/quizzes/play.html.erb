@@ -15,8 +15,14 @@
         <% end %>
     </section>
     <section class="quiz_play_footer page_footer">
-        <button>
-            <%= link_to "Back to Unit", unit_path(@quiz.unit)%>
-        </button>
+        <% if is_admin? %>
+            <button>
+                <%= link_to "Back to Unit", unit_edit_path(@quiz.unit)%>
+            </button>
+        <% else %>
+            <button>
+                <%= link_to "Back to Unit", unit_path(@quiz.unit)%>
+            </button>
+        <% end %>
     </section>
 </main>

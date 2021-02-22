@@ -46,6 +46,9 @@
     </section>
     <section class="user_edit_admin_footer">
         <button>
+            <%= link_to "Delete User", user_path(@user), method: :delete %>
+        </button>
+        <button>
             <%= link_to "Back to Admin Home", admin_home_path %>
         </button>
     </section>

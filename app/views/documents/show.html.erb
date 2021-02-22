@@ -10,9 +10,19 @@
             <button>
                 <%= link_to "Edit This Document", edit_document_path(@document) %>
             </button>
-        <% end %>   
-        <button>
-            <%= link_to "Back to Unit", unit_path(@document.unit)%>
-        </button>
+            <br><br>
+            <button>
+                <%= link_to "Delete This Document", document_path(@document), method: :delete %>
+            </button>
+        <% end %>
+        <% if is_admin? %>   
+            <button>
+                <%= link_to "Back to Unit", edit_unit_path(@document.unit)%>
+            </button>
+        <% else %>
+            <button>
+                <%= link_to "Back to Unit", unit_path(@document.unit)%>
+            </button>
+        <% end %>
     </section>
 </main>

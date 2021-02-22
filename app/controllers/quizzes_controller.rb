@@ -1,5 +1,5 @@
 class QuizzesController < ApplicationController
-    before_action :set_quiz, only: %i[ show edit update ]
+    before_action :set_quiz, only: %i[ show edit update destroy ]
     def index
         if is_admin?
             @Quizzes = Quiz.all
@@ -54,8 +54,12 @@ class QuizzesController < ApplicationController
 
     def destroy
         if is_admin?
+            @quiz.questions.each do |question|
+                question.answers.destroy_all
+            end
+            @quiz.questions.destroy_all
             @quiz.destroy
-            redirect_to quizzes_path
+            redirect_to admin_home_path
         else
             redirect_to home_page_path
         end

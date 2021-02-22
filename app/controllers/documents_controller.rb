@@ -1,5 +1,5 @@
 class DocumentsController < ApplicationController
-    before_action :set_document, only: %i[ show edit update ]
+    before_action :set_document, only: %i[ show edit update destroy ]
 
     def show
         if logged_in?
@@ -48,6 +48,7 @@ class DocumentsController < ApplicationController
     def destroy
         if is_admin?
             @document.destroy
+            @document.document_results.destroy_all
             redirect_to edit_unit_path(@document.unit)
         else
             redirect_to home_page_path

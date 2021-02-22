@@ -13,6 +13,16 @@
             <button>
                 <%= link_to "Edit Quiz", edit_quiz_path(@quiz)%>
             </button>
+            <button>
+                <%= link_to "Delete Quiz", quiz_path(@quiz), method: :delete %>
+            </button>
+            <button>
+                <%= link_to "Back to Unit", edit_unit_path(@quiz.unit)%>
+            </button>
+        <% else %>
+            <button>
+                <%= link_to "Back to Unit", unit_path(@quiz.unit)%>
+            </button>
         <% end %>
     </section>
 </main>

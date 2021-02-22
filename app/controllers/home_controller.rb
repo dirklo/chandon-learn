@@ -8,7 +8,9 @@ class HomeController < ApplicationController
             @users = User.all
             @units = Unit.all
             render 'home/admin'
-        else
+        elsif !logged_in?
+            redirect_to '/'
+        else 
             @units = current_user.accessible_units
             render 'home/student'
         end

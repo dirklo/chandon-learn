@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    before_action :set_user, only: %i[ show edit update ]
+    before_action :set_user, only: %i[ show edit update destroy ]
     def index
         @users = User.all
         render 'users/index'
@@ -16,22 +16,33 @@ class UsersController < ApplicationController
     end
 
     def create
-        @user = User.create(params.require(:user).permit(:username, :email, :password, :admin))
+        @user = User.create(user_params)
         redirect_to user_path(@user)
     end
 
     def update
-        @user.update(params.require(:user).permit(:username, :email, :password, :admin))
+        @user.update(user_params)
         redirect_to user_path(@user)
     end
 
     def destroy
-        @user.destroy
-        redirect_to home_path
+        if is_admin?
+            @user.unit_accesses.destroy_all
+            @user.document_results.destroy_all
+            @user.quiz_results.destroy_all
+            @user.destroy
+            redirect_to admin_home_path
+        else
+            redirect_to home_path
+        end
     end
 
     private
         def set_user
             @user = User.find(params[:id])
+        end
+
+        def user_params
+            params.require(:user).permit(:username, :email, :password, :admin)
         end
 end
